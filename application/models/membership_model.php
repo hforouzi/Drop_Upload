@@ -2,7 +2,7 @@
 
 class Membership_model extends CI_Model {
 
-	function validate()
+	public function validate()
 	{
 		$this->db->where('username', $this->input->post('username'));
 		$this->db->where('password', md5($this->input->post('password')));
@@ -14,7 +14,7 @@ class Membership_model extends CI_Model {
 		}
 	}
 	
-	function create_member()
+	public function create_member()
 	{	
 		$new_member_insert_data = array(
 			'first_name' => $this->input->post('first_name'),
@@ -26,6 +26,20 @@ class Membership_model extends CI_Model {
 		
 		$insert = $this->db->insert('membership', $new_member_insert_data);
 		return $insert;
+	}
+
+	public function update_member()
+	{
+		$data = array(
+			'first_name' => $this->input->post('first_name'),
+			'last_name' => $this->input->post('last_name'),
+			'email_address' => $this->input->post('email_address'),
+			'password' => md5($this->input->post('password'))
+		);
+
+		$this->db->where('username', $this->session->userdata('username'));
+		$update = $this->db->update('membership', $data);
+		return $update;
 	}
 }
 

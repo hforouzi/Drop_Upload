@@ -9,7 +9,8 @@
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
  */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
-body{
-  padding-top: 60px;
+body, input, button, select, textarea {
+	font-family: 'Open Sans', sans-serif;
 }

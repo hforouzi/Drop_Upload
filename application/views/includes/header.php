@@ -12,7 +12,7 @@
 <!-- Generic page styles -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
 <!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-responsive.min.css">
+<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-responsive.min.css"> -->
 <!-- Bootstrap CSS fixes for IE6 -->
 <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
 <!-- Bootstrap Image Gallery styles -->

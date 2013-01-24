@@ -7,6 +7,12 @@ class Login extends CI_Controller {
 		$data['main_content'] = 'login_form';
 		$this->load->view('includes/template', $data);		
 	}
+
+	public function profile_settings()
+	{
+		$data['main_content'] = 'update_form';
+		$this->load->view('includes/template', $data);		
+	}
 	
 	public function validate_credentials()
 	{		
@@ -64,10 +70,43 @@ class Login extends CI_Controller {
 			}
 			else
 			{
-				$this->load->view('signup_form');			
+				$data['main_content'] = 'signup_form';
+				$this->load->view('includes/template', $data);			
 			}
 		}
 		
+	}
+
+	public function profile_update()
+	{
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('first_name', 'Name', 'trim|required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+		$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_rules('password2', 'Password Confirmation', 'trim|required|matches[password]');
+
+		if($this->form_validation->run() == FALSE)
+		{
+			$data['main_content'] = 'update_form';
+			$this->load->view('includes/template', $data);
+		}
+		
+		else
+		{			
+			$this->load->model('membership_model');
+			
+			if($query = $this->membership_model->update_member())
+			{
+				redirect('site/members_area');
+			}
+			else
+			{
+				$data['main_content'] = 'update_form';
+				$this->load->view('includes/template', $data);			
+			}
+		}
 	}
 	
 	public function logout()
